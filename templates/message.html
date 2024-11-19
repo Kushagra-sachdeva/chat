@@ -46,6 +46,20 @@
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
+        const crypto = require('crypto-js');
+
+const secretKey = "mySecretKey";  // Ensure both client and server use the same key
+
+function encryptMessage(message) {
+    return crypto.AES.encrypt(message, secretKey).toString();
+}
+
+// Encrypt message and send it to the WebSocket
+function sendMessage(message) {
+    const encryptedMessage = encryptMessage(message);
+    websocket.send(JSON.stringify({ message: encryptedMessage }));
+}
+
         const websocketProtocol = window.location.protocol === "https:" ? "wss" : "ws";
         const wsEndpoint = `${websocketProtocol}://${window.location.host}/ws/notification/{{room_name}}/`;
         const socket = new WebSocket(wsEndpoint);

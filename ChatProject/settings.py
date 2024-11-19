@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
 # Application definition
 
 INSTALLED_APPS = [
@@ -71,7 +72,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ChatProject.wsgi.application'
-ASGI_APPLICATION = "ChatProject.asgi.application"
+ASGI_APPLICATION = 'ChatProject.asgi.application'
 CHANNEL_LAYERS = {
    
     "default": {"BACKEND": "channels.layers.InMemoryChannelLayer"},
